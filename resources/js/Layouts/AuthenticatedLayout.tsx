@@ -1,9 +1,12 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
+import NavLink, { AdminNavbarLink } from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import { cn } from '@/lib/utils';
 import { Link, usePage } from '@inertiajs/react';
+import { LayoutDashboard, LayoutDashboardIcon } from 'lucide-react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
+import { FaGraduationCap } from 'react-icons/fa';
 
 export default function Authenticated({
     header,
@@ -15,42 +18,29 @@ export default function Authenticated({
         useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <nav className="border-b border-gray-100 bg-white">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-zinc-100">
+            <nav className="bg-[#1d2733] ">
+                <div className="">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
-                            <div className="flex shrink-0 items-center">
+                            <div className="flex shrink-0 items-center p-2">
                                 <Link href="/" className='flex items-center gap-2'>
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
-                                    <span className='font-bebas text-[26px]'>FR. PORUKARA CMI COLLEGE</span>
+                                    <span className='font-bebas text-white text-[26px]'>FR. PORUKARA CMI COLLEGE</span>
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
-                                >
-                                    Dashboard
-                                </NavLink>
-                                <NavLink
-                                href={route('admincourses.index')}
-                                active={route().current('admincourses.index')}
-                                >
-                                    Courses
-                                </NavLink>
-                            </div>
+
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
-                            <div className="relative ms-3">
-                                <Dropdown>
+                            <div className="relative ms-3 ">
+                                <Dropdown >
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
+                                        <span className="inline-flex rounded-md me-5">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex bg-black/40 text-white  items-center rounded-md border border-transparent  px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out hover:text-white/60 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -88,14 +78,14 @@ export default function Authenticated({
                             </div>
                         </div>
 
-                        <div className="-me-2 flex items-center sm:hidden">
+                        <div className="me-2 flex items-center sm:hidden">
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
                                         (previousState) => !previousState,
                                     )
                                 }
-                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
+                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-black/40 hover:text-gray-500 focus:bg-black/40 focus:text-gray-200 focus:outline-none"
                             >
                                 <svg
                                     className="h-6 w-6"
@@ -138,12 +128,12 @@ export default function Authenticated({
                     }
                 >
                     <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
+                        <AdminNavbarLink route={route('dashboard')} active={route().current('dashboard')}>
+                            <LayoutDashboardIcon /> Dashboard
+                        </AdminNavbarLink>
+                        <AdminNavbarLink route={route('admincourses.index')} active={route().current('admincourses.index')}>
+                            <FaGraduationCap size={24} /> Courses
+                        </AdminNavbarLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
@@ -172,19 +162,44 @@ export default function Authenticated({
                 </div>
             </nav>
 
-            {header && (
-                <header className="bg-white shadow">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        {header}
-                    </div>
-                </header>
-            )}
 
-            <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[65vh]'>{children}</main>
-            <footer className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex md:flex-row flex-col p-5 text-sm w-full justify-between'>
-                <span>2024 &copy; all rights reserved </span>
-                <span>Designed & Developed by Abin Antony Kattady</span>
-            </footer>
+            <section className='flex mx-auto'>
+                <div className="sm:flex hidden flex-col min-w-[300px] pt-[30px] bg-[#161e27] min-h-screen h-full">
+                    {/* <span className='text-white/90 py-4'>Quick Links</span> */}
+
+                    {/* <NavLink
+                        href={route('dashboard')}
+                        active={route().current('dashboard')}
+                    >
+                        Dashboard 
+                    </NavLink> */}
+                    <AdminNavbarLink route={route('dashboard')} active={route().current('dashboard')}>
+                        <LayoutDashboardIcon /> Dashboard
+                    </AdminNavbarLink>
+                    <AdminNavbarLink route={route('admincourses.index')} active={route().current('admincourses.index')}>
+                        <FaGraduationCap size={24} /> Courses
+                    </AdminNavbarLink>
+
+                </div>
+                <div className='w-full min-h-screen'>
+                    {header && (
+                        <header className="bg-white shadow w-full">
+                            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                                {header}
+                            </div>
+                        </header>
+                    )}
+                    <main className=' bg-zinc-100'>
+                        {children}
+                        <footer className='flex md:flex-row flex-col p-5 text-sm w-full justify-between'>
+                            <span>2024 &copy; all rights reserved </span>
+                            <span>Designed & Developed by Abin Antony Kattady</span>
+                        </footer>
+                    </main>
+
+                </div>
+            </section>
+
         </div>
     );
 }

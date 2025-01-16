@@ -9,12 +9,10 @@ import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 import { FaBookmark, FaGraduationCap, FaHome, FaPhone } from 'react-icons/fa';
 export default function BLank({ children }: PropsWithChildren) {
-    return <main className="flex flex-col">
+    return <main className="flex flex-col min-h-[100dvh] bg-zinc-100 justify-center p-6">
         <SnackbarContextProvider>
             <HomeLoader />
-            <main className='p-3 flex flex-col justify-center min-h-screen'>
                 {children}
-            </main>
             <Snackbar />
         </SnackbarContextProvider>
     </main>;

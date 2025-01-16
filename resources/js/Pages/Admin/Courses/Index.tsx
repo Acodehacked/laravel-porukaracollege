@@ -29,16 +29,16 @@ const CoursesIndex = ({ courses }: PageProps<{ courses: Course[] }>) => {
                 <div>
                     {courses.length === 0 ? (
                         <p>No courses available.</p>
-                    ) : <div className='grid gap-2 mt-4 grid-cols-1 md:grid-cols-4 sm:grid-cols-2'>
+                    ) : <div className='grid gap-2 mt-4 grid-cols-1 md:grid-cols-4 p-3 sm:grid-cols-2'>
                         {
                             courses.map((course) => (
-                                <div key={course.id} className="course-item card">
+                                <div key={course.id} className="course-item relative bg-white overflow-hidden rounded-md px-3 py-2 border-[0.01rem] border-zinc-300">
                                     <img className='w-[40px]' src='/storage/logo-gold.png' />
                                     <h3 className='font-medium text-xl'>{course.title}</h3>
-                                    <p>{course.description?.length ?? 0 > 80 ? course.description?.substring(0, 70) : course.description}</p>
-                                    <div className='flex w-full justify-end'>
-                                        <Link href={`/admin/courses/${course.id}`}><Edit size={30} className='text-blue-800 p-1 rounded-md ' /></Link>
-                                        <Link href={`/admin/courses/${course.id}`} method="delete" as="button"><Trash2Icon size={30} className='text-red-800 p-1 rounded-md ' /></Link>
+                                    <p className='text-[14px] text-zinc-700'>{course.description?.length ?? 0 > 80 ? course.description?.substring(0, 70) : course.description}</p>
+                                    <div className='flex gap-2 justify-end absolute right-0 bottom-0 p-1 bg-white w-auto shadow'>
+                                        <Link href={`/admin/courses/${course.id}`}><Edit size={25} className='text-blue-900 p-1 rounded-md ' /></Link>
+                                        <Link href={`/admin/courses/${course.id}`} onBefore={()=>confirm(`Do you want to delete ${course.title} Course`)} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
                                     </div>
                                 </div>
                             ))

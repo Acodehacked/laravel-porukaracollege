@@ -39,7 +39,7 @@ export default function Login({
                 </div>
             )}
 
-            <form className='bg-white p-5 max-w-[500px] rounded-xl mx-auto w-full' onSubmit={submit}>
+            <form className='bg-white p-5 max-w-[500px] rounded-md shadow-2xl mb-20 mx-auto w-full' onSubmit={submit}>
                 <div className='flex items-center gap-2 mb-4'>
                     <img className='h-[80px]' src='/storage/logo-gold.png' />
                     <div className='flex flex-col'>

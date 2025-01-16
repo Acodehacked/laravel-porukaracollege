@@ -24,5 +24,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'abin@example.com',
             'password'=>'Abin@1234'
         ]);
+
+        User::factory()->create([
+            'name' => 'Porukara College',
+            'email' => 'porukaracollege@gmail.com',
+            'password'=>'PorukaraCollege2025cmi'
+        ]);
     }
 }

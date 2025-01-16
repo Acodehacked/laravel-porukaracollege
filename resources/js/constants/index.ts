@@ -90,7 +90,7 @@ export const COURSES = [
         image: '',
         eligibility: '+2 or Equivalent Course',
         link: '/',
-        slug: 'BscPsychology'
+        path: '/Course/BscPsychology'
     },
 ]
 export const AddedDeps = [

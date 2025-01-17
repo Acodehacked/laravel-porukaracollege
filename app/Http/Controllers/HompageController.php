@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -57,13 +58,13 @@ class HompageController extends Controller
     public function latestevents(){
         $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
         return Inertia::render('Common/Events/LatestEvents',[
-            'latestevents'=>$announcents
+            'latestevents'=>new EventResource($announcents)
         ]);
     }
     public function annnouncements(){
         $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
         return Inertia::render('Common/Events/Announcements',[
-            'announcements'=>$announcents
+            'announcements'=>new EventResource($announcents)
         ]);
     }
     public function addoncourses(){

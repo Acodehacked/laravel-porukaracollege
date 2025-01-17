@@ -1,15 +1,16 @@
 import { Button } from "@/Components/ui/button";
 import { DEMOANNOUNCEMENTS, DEMOEVENTS } from "@/constants";
 import Guest from "@/Layouts/GuestLayout";
-import { Course } from "@/types";
+import { Course, Event, PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import { ArrowRightCircleIcon, ArrowRightIcon, Calendar } from "lucide-react";
 import { BiDownload, BiInfoCircle, BiLinkExternal } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import {motion} from 'motion/react';
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
-export default function Show() {
+export default function Show({announcements}:PageProps<{announcements:{data:Event[]}}>) {
     return <Guest>
         <Head>
             <title>Announcements</title>
@@ -22,7 +23,7 @@ export default function Show() {
                 <Tab active ><span>This Year</span></Tab>
             </div>
             <div className="mt-4 text-[18px] mb-5 grid md:grid-cols-2 grid-cols-1 gap-3">
-                {DEMOANNOUNCEMENTS.map((item, i) => {
+                {announcements.data.map((item, i) => {
                     return <motion.div initial={{ opacity: 0, x: -100 }}
                         animate={{ x: 0 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -33,8 +34,8 @@ export default function Show() {
                         }} key={i} className='anouncement_card shadow-xl flex items-start mx-2 mt-2 rounded-xl gap-2 p-3 bg-white'>
                         <div className='p-2 max-w-[100px] w-full min-h-[130px] flex justify-center items-center flex-col m-2 bg-primary rounded-xl'>
                             <Calendar className='h-[20px] text-white' size={20} />
-                            <h2 className='text-[35px] m-0 p-0 h-[35px] text-white'>{item.day}</h2>
-                            <h6 className="text-[22px] m-0 p-0 text-white/70">{item.month}</h6>
+                            <h2 className='text-[35px] m-0 p-0 h-[35px] text-white'>{new Date(item?.date ?? '').getDate()}</h2>
+                            <h6 className="text-[22px] m-0 p-0 text-white/70">{new Date(item?.date ?? '').getMonth()}</h6>
                         </div>
                         <div className='w-full mt-2'>
                             <h2 className="text-[19px] font-semibold mb-4">{item.title}</h2>

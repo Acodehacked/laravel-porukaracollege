@@ -102,13 +102,13 @@ const CoursesIndex = ({ events }: PageProps<{ events: { data: Event[] } }>) => {
                     {selectedindex == 2 && <div className='p-2'>
                         {data2.length === 0 ? (
                             <p className='p-5 text-black/60'>No Events available.</p>
-                        ) : <div className='flex flex-col gap-2 mt-4   grid-cols-1 md:grid-cols-4 p-3 sm:grid-cols-2'>
-                            <h3 className='mb-3 text-xl'>
+                        ) : <div className='grid gap-2 mt-4   grid-cols-1 md:grid-cols-4 p-3 sm:grid-cols-2'>
+                            <h3 className='mb-3 text-xl md:col-span-4 sm:col-span-2 col-span-1'>
                                 Total {data2.length} Events
                             </h3>
                             {
                                 data2.map((course) => (
-                                    <div key={course.id} className="course-item flex gap-2 relative bg-white overflow-hidden rounded-md px-3 py-2 border-[0.01rem] border-zinc-300">
+                                    <div key={course.id} className="course-item gap-2 relative bg-white overflow-hidden rounded-md px-3 py-2 border-[0.01rem] border-zinc-300">
                                         <img className={cn('h-[70px] w-auto')} src={`/storage/images/small/${course?.images?.[0] ?? ''}`} />
                                         <div className="flex flex-col">
                                             <h3 className='font-medium text-xl'>{course.title}</h3>

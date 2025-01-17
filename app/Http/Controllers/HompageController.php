@@ -58,13 +58,13 @@ class HompageController extends Controller
     public function latestevents(){
         $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
         return Inertia::render('Common/Events/LatestEvents',[
-            'latestevents'=>new EventResource($announcents)
+            'latestevents'=>EventResource::collection($announcents)
         ]);
     }
     public function annnouncements(){
         $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
         return Inertia::render('Common/Events/Announcements',[
-            'announcements'=>new EventResource($announcents)
+            'announcements'=>EventResource::collection($announcents)
         ]);
     }
     public function addoncourses(){

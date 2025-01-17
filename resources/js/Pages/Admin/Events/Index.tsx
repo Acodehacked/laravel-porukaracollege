@@ -67,7 +67,7 @@ const CoursesIndex = ({ events }: PageProps<{ events: { data: Event[] } }>) => {
                                             <p className='text-[14px] text-zinc-500'>{format(new Date(course?.date ?? ''),'PP')} &middot; {course.description?.length ?? 0 > 80 ? course.description?.substring(0, 70) : course.description}</p>
                                             <div className='flex gap-2 justify-end absolute right-0 bottom-0 p-1 bg-white w-auto shadow'>
                                                 <Link href={`/admin/events/${course.id}`}><Edit size={25} className='text-blue-900 p-1 rounded-md ' /></Link>
-                                                <Link href={`/admin/events/${course.id}`} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
+                                                <Link href={`/admin/events/${course.id}`} onBefore={()=>confirm(`Do you want to delete ${course.title} Event`)} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
                                             </div>
                                         </div>
                                         {/* onBefore={()=>confirm(`Do you want to delete ${course.title} Course`)} */}
@@ -91,7 +91,7 @@ const CoursesIndex = ({ events }: PageProps<{ events: { data: Event[] } }>) => {
                                             <p className='text-[14px] text-zinc-500'>{format(new Date(course?.date ?? ''),'PP')} &middot; {course.description?.length ?? 0 > 80 ? course.description?.substring(0, 70) : course.description}</p>
                                             <div className='flex gap-2 justify-end absolute right-0 bottom-0 p-1 bg-white w-auto shadow'>
                                                 <Link href={`/admin/events/${course.id}`}><Edit size={25} className='text-blue-900 p-1 rounded-md ' /></Link>
-                                                <Link href={`/admin/events/${course.id}`} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
+                                                <Link href={`/admin/events/${course.id}`} onBefore={()=>confirm(`Do you want to delete ${course.title} Event`)} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
                                             </div>
                                         </div>
                                         {/* onBefore={()=>confirm(`Do you want to delete ${course.title} Course`)} */}
@@ -115,7 +115,7 @@ const CoursesIndex = ({ events }: PageProps<{ events: { data: Event[] } }>) => {
                                             <p className='text-[14px] text-zinc-500'>{format(new Date(course?.date ?? ''),'PP')} &middot; {course.description?.length ?? 0 > 80 ? course.description?.substring(0, 70) : course.description}</p>
                                             <div className='flex gap-2 justify-end absolute right-0 bottom-0 p-1 bg-white w-auto shadow'>
                                                 <Link href={`/admin/events/${course.id}`}><Edit size={25} className='text-blue-900 p-1 rounded-md ' /></Link>
-                                                <Link href={`/admin/events/${course.id}`} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
+                                                <Link href={`/admin/events/${course.id}`} onBefore={()=>confirm(`Do you want to delete ${course.title} Event`)} method="delete" as="button"><Trash2Icon size={25} className='text-red-900 p-1 rounded-md ' /></Link>
                                             </div>
                                         </div>
                                         {/* onBefore={()=>confirm(`Do you want to delete ${course.title} Course`)} */}

@@ -19,7 +19,7 @@ export default function Authenticated({
         useState(false);
 
     return (
-        <div className="min-h-screen bg-zinc-100">
+        <div className="max-h-screen overflow-hidden bg-zinc-100">
             <nav className="bg-[#1d2733] ">
                 <div className="">
                     <div className="flex h-16 justify-between">
@@ -187,7 +187,7 @@ export default function Authenticated({
                         <BookUpIcon /> Latest Updates
                     </AdminNavbarLink>
                 </div>
-                <div className='w-full min-h-screen'>
+                <div className='w-full max-h-screen'>
                     {header && (
                         <header className="bg-white shadow w-full">
                             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -195,7 +195,7 @@ export default function Authenticated({
                             </div>
                         </header>
                     )}
-                    <main className=' bg-zinc-100'>
+                    <main className=' bg-zinc-100 max-h-[85dvh] h-full overflow-scroll'>
                         {children}
                         <footer className='flex md:flex-row flex-col p-5 text-sm w-full justify-between'>
                             <span>2024 &copy; all rights reserved </span>

@@ -12,7 +12,7 @@ class EventController extends Controller
     //
     public function index()
     {
-        $events = Event::orderByDesc('id')->get();
+        $events = Event::orderByDesc('date')->get();
         return Inertia::render('Admin/Events/Index', [
             'events' => EventResource::collection($events)
         ]);

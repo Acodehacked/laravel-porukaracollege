@@ -86,6 +86,7 @@ const HomeAll = ({ events }: { events: Event[] }) => {
                                 <span className='pt-20'>No Announcements updated</span>
                             </div>}
                         {events.map((item, i) => {
+                            if(i > 3) return <span></span>
                             return <motion.div initial={{ opacity: 0, x: -100 }}
                                 animate={{ x: 0 }}
                                 whileInView={{ opacity: 1, x: 0 }}

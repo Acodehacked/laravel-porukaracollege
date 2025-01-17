@@ -11,6 +11,7 @@ import { Head, Link } from '@inertiajs/react';
 
 export default function Welcome({events,courses}:PageProps<{events:{data:Event[]},courses: Course[]}>) {
     const announcements = events.data.filter((e)=>e.eventType == 'Announcement');
+    const even = events.data.filter((e)=>e.eventType == 'Events');
     console.log(events)
     const handleImageError = () => {
         document
@@ -30,7 +31,7 @@ export default function Welcome({events,courses}:PageProps<{events:{data:Event[]
                 <main className='w-100 bg-foreground min-h-[100vh] block relative'>
                     <HomeAll events={announcements} />
                     <div className='bg-white'>
-                        <HomeEvents  />
+                        <HomeEvents events={even} />
                         <HomeHead />
                         <HomeCentres />
                         <HomeGallery />

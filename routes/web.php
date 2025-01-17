@@ -15,14 +15,14 @@ use Inertia\Inertia;
 Route::get('/', function () {
     $events = Event::orderByDesc('date')->groupBy()->limit(100)->get();
     return Inertia::render('Welcome',[
-        'events'=>EventResource::collection(Event::all())
+        'events'=>EventResource::collection(Event::orderByDesc('date')->get())
     ]);
 });
 
 Route::get('admin/dashboard', function () {
     return Inertia::render('Dashboard', [
         'courses' => Course::all(),
-        'events' => EventResource::collection(Event::all())
+        'events' => EventResource::collection(Event::orderByDesc('date')->get())
     ]);
 })->middleware(['auth'])->name('dashboard');
 // publicShow

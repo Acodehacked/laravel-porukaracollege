@@ -13,7 +13,7 @@ import { BiLinkExternal } from 'react-icons/bi';
 import StaggerHoverButton from '@/Components/ui/StaggerTextButton';
 import { Link } from "@inertiajs/react";
 import { Event } from "@/types";
-const HomeEvents = () => {
+const HomeEvents = ({events}:{events:Event[]}) => {
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
@@ -50,19 +50,19 @@ const HomeEvents = () => {
                 <div className='screen modern_scrollbar flex justify-end flex-col pb-6'>
                     <Carousel >
                         <CarouselContent>
-                            {DEMOEVENTS.map((item, index) => {
+                            {events.map((item, index) => {
                                 return <CarouselItem key={index} className="lg:basis-1/5 sm:basis:1/1.5 basis-1/1.5 cursor-pointer">
                                     <motion.div
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
+                                        transition={{ duration: 0.4, delay: (index) * 0.1 }}
                                         variants={{
                                             visible: { opacity: 1, y: 0 },
-                                            hidden: { opacity: 0, y: 200 }
+                                            hidden: { opacity: 0, y: 60 }
                                         }} key={index} className={`group event_card w-full max-w-[450px] bg-zinc-50 md:h-[330px] h-[270px] mt-2 rounded-sm relative overflow-hidden`}>
                                         <div className="bg absolute group-hover:scale-[1.1] duration-700 transition-all scale-100 top-0 bottom-0 left-0 right-0 z-[1]">
-                                            <img src={item.image} className='  transition-all duration-500 object-cover' alt='d' />
+                                            <img src={`/storage/images/small/${item?.images?.[0] ?? ''}`} className='  transition-all duration-500 object-cover' alt='d' />
                                         </div>
                                     </motion.div>
                                     <div className="px-3 text-black flex flex-col justify-end z-[2]">

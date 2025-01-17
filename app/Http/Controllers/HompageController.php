@@ -56,7 +56,7 @@ class HompageController extends Controller
         return Inertia::render('Common/About/Contact');
     }
     public function latestevents(){
-        $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
+        $announcents = Event::where('event_type','Events')->orderByDesc('date')->get();
         return Inertia::render('Common/Events/LatestEvents',[
             'latestevents'=>EventResource::collection($announcents)
         ]);

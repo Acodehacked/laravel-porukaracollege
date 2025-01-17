@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HompageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Resources\EventResource;
 use App\Models\Course;
 use App\Models\Event;
 use Illuminate\Foundation\Application;
@@ -14,14 +15,14 @@ use Inertia\Inertia;
 Route::get('/', function () {
     $events = Event::orderByDesc('date')->groupBy()->limit(100)->get();
     return Inertia::render('Welcome',[
-        'events'=>$events
+        'events'=>EventResource::collection(Event::all())
     ]);
 });
 
 Route::get('admin/dashboard', function () {
     return Inertia::render('Dashboard', [
         'courses' => Course::all(),
-        'events' => Event::all()
+        'events' => EventResource::collection(Event::all())
     ]);
 })->middleware(['auth'])->name('dashboard');
 // publicShow

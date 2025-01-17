@@ -12,6 +12,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { BiLinkExternal } from 'react-icons/bi';
 import StaggerHoverButton from '@/Components/ui/StaggerTextButton';
 import { Link } from "@inertiajs/react";
+import { Event } from "@/types";
 const HomeEvents = () => {
     const responsive = {
         superLargeDesktop: {

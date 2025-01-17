@@ -11,11 +11,12 @@ import { HomeMissionandVision } from './HomeAboutUs'
 import { HomeCoreValues } from './HomeEvents'
 import Marquee from "react-fast-marquee";
 import ShadowScroller from './ShadowScroller'
-import { DEMOANNOUNCEMENTS, HOME_CAROUSEL } from '@/constants'
+import { DEMOANNOUNCEMENTS, HOME_CAROUSEL, MONTHS } from '@/constants'
 import { FaFireAlt } from 'react-icons/fa'
 import Tab from '@/Components/ui/Tab'
 import { Link } from '@inertiajs/react'
-const HomeAll = () => {
+import { Event } from '@/types'
+const HomeAll = ({ events }: { events: Event[] }) => {
     const [visible, setvisible] = useState(false)
     return (
         <>
@@ -79,9 +80,12 @@ const HomeAll = () => {
                         <div className="flex flex-wrap justify-start pt-2 gap-3 px-3 w-full">
                             <Tab type='sm' dark active ><span>This Year</span></Tab>
                             <Tab type='sm' dark><span>This Month</span></Tab>
-                            <Tab type='sm' dark><span>All Time</span></Tab>
+                            {/* <Tab type='sm' dark><span>All Time</span></Tab> */}
                         </div>
-                        {DEMOANNOUNCEMENTS.map((item, i) => {
+                        {events.length == 0 && <div className='mt-10 px-4 py-3'>
+                                <span className='pt-20'>No Announcements updated</span>
+                            </div>}
+                        {events.map((item, i) => {
                             return <motion.div initial={{ opacity: 0, x: -100 }}
                                 animate={{ x: 0 }}
                                 whileInView={{ opacity: 1, x: 0 }}
@@ -92,8 +96,9 @@ const HomeAll = () => {
                                 }} key={i} className='anouncement_card flex items-start mx-2 mt-2 rounded-xl gap-2 p-3 bg-zinc-100'>
                                 <div className='p-2 max-w-[100px] w-full min-h-[130px] flex justify-center items-center flex-col m-2 bg-primary rounded-xl'>
                                     <Calendar className='h-[20px] text-white' size={20} />
-                                    <h2 className='text-[35px] m-0 p-0 h-[35px] text-white'>{item.day}</h2>
-                                    <h6 className="text-[22px] m-0 p-0 text-white/70">{item.month}</h6>
+                                    <h2 className='text-[35px] m-0 p-0 h-[35px] text-white'>{new Date(item?.date ?? '').getDate()}</h2>
+                                    <h6 className="text-[22px] m-0 p-0 text-white/70">{MONTHS[new Date(item?.date ?? '').getMonth()]}</h6>
+                                    <h6 className="text-[18px] m-0 p-0 text-white/50">{new Date(item?.date ?? '').getFullYear()}</h6>
                                 </div>
                                 <div className='w-full mt-2'>
                                     <h2 className="text-[19px] font-semibold">{item.title}</h2>

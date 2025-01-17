@@ -6,12 +6,12 @@ import HomeCentres from '@/Components/reusable/public/HomeCentres';
 import { AdmssionForm, HomeEvents, HomeHead } from '@/Components/reusable/public/HomeEvents';
 import { COLLEGES } from '@/constants';
 import Guest from '@/Layouts/GuestLayout';
-import { Course, PageProps } from '@/types';
+import { Course, Event, PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 
-export default function Welcome({
-    courses
-}: PageProps<{ courses : Course[] }>) {
+export default function Welcome({events,courses}:PageProps<{events:{data:Event[]},courses: Course[]}>) {
+    const announcements = events.data.filter((e)=>e.eventType == 'Announcement');
+    console.log(events)
     const handleImageError = () => {
         document
             .getElementById('screenshot-container')
@@ -28,9 +28,9 @@ export default function Welcome({
             <Head title="Home" />
             <Guest>
                 <main className='w-100 bg-foreground min-h-[100vh] block relative'>
-                    <HomeAll />
+                    <HomeAll events={announcements} />
                     <div className='bg-white'>
-                        <HomeEvents />
+                        <HomeEvents  />
                         <HomeHead />
                         <HomeCentres />
                         <HomeGallery />

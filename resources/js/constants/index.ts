@@ -988,7 +988,7 @@ export const FACILITES = [
     },
 
 ];
-
+export const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Ju','Aug','Sep','Oct','Nov','Dec'];
 export const COLLEGES = [
     { "name": "Christ University, Bangalore" },
     { "name": "Kristhu Jyayanthi College, Bangalore" },

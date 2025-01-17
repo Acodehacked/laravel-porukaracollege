@@ -1,16 +1,17 @@
 import { Button } from "@/Components/ui/button";
-import { DEMOANNOUNCEMENTS, DEMOEVENTS } from "@/constants";
+import { DEMOANNOUNCEMENTS, DEMOEVENTS, MONTHS } from "@/constants";
 import Guest from "@/Layouts/GuestLayout";
 import { Course, Event, PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import { ArrowRightCircleIcon, ArrowRightIcon, Calendar } from "lucide-react";
 import { BiDownload, BiInfoCircle, BiLinkExternal } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
-import {motion} from 'motion/react';
+import { motion } from 'motion/react';
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
-export default function Show({announcements}:PageProps<{announcements:{data:Event[]}}>) {
+export default function Show({ announcements }: PageProps<{ announcements: { data: Event[] } }>) {
+
     return <Guest>
         <Head>
             <title>Announcements</title>
@@ -22,6 +23,9 @@ export default function Show({announcements}:PageProps<{announcements:{data:Even
                 <Tab><span>This Month</span></Tab>
                 <Tab active ><span>This Year</span></Tab>
             </div>
+            {announcements.data.length == 0 && <div className='mt-10 px-4 py-3'>
+                <span className='pt-20'>No Announcements updated</span>
+            </div>}
             <div className="mt-4 text-[18px] mb-5 grid md:grid-cols-2 grid-cols-1 gap-3">
                 {announcements.data.map((item, i) => {
                     return <motion.div initial={{ opacity: 0, x: -100 }}
@@ -35,7 +39,8 @@ export default function Show({announcements}:PageProps<{announcements:{data:Even
                         <div className='p-2 max-w-[100px] w-full min-h-[130px] flex justify-center items-center flex-col m-2 bg-primary rounded-xl'>
                             <Calendar className='h-[20px] text-white' size={20} />
                             <h2 className='text-[35px] m-0 p-0 h-[35px] text-white'>{new Date(item?.date ?? '').getDate()}</h2>
-                            <h6 className="text-[22px] m-0 p-0 text-white/70">{new Date(item?.date ?? '').getMonth()}</h6>
+                            <h6 className="text-[22px] m-0 p-0 text-white/70">{MONTHS[new Date(item?.date ?? '').getMonth()]}</h6>
+                            <h6 className="text-[18px] m-0 p-0 text-white/50">{new Date(item?.date ?? '').getFullYear()}</h6>
                         </div>
                         <div className='w-full mt-2'>
                             <h2 className="text-[19px] font-semibold mb-4">{item.title}</h2>

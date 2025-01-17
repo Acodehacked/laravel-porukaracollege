@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date')->nullable(); // Date of the event, nullable
             $table->json('images')->nullable(); // JSON field for images
             $table->enum('event_type', [
-                'Upcoming Event',
+                'UpcomingEvent',
                 'Announcement',
                 'Events',
                 'NSS Event',

@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/react"
 export default function Index({ courses }: { courses: CourseType[] }) {
     return <Guest>
         <main>
-            <div className="flex mt-[100px] items-center jusify-center font-bold text-[40px] px-0 h-[250px] text-foreground justify-between relative overflow-hidden bg-zinc-50">
+            <div className="flex mt-[160px] items-center jusify-center font-bold text-[40px] px-0 h-[250px] text-foreground justify-between relative overflow-hidden bg-zinc-50">
                 <div className="flex relative w-full z-[3] md:flex-row flex-col justify-center items-center h-[auto]">
                     <div className="flex flex-col">
                         <h3 className="text-link-dark no-hover">Courses We Offer</h3>

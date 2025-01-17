@@ -2,9 +2,10 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink, { AdminNavbarLink } from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import { Toaster } from '@/Components/ui/sonner';
 import { cn } from '@/lib/utils';
 import { Link, usePage } from '@inertiajs/react';
-import { LayoutDashboard, LayoutDashboardIcon } from 'lucide-react';
+import { BookUpIcon, LayoutDashboard, LayoutDashboardIcon } from 'lucide-react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 import { FaGraduationCap } from 'react-icons/fa';
 
@@ -134,6 +135,9 @@ export default function Authenticated({
                         <AdminNavbarLink route={route('admincourses.index')} active={route().current('admincourses.index')}>
                             <FaGraduationCap size={24} /> Courses
                         </AdminNavbarLink>
+                        <AdminNavbarLink route={route('adminevents.index')} active={route().current('adminevents.index')}>
+                            <BookUpIcon /> Latest Updates
+                        </AdminNavbarLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
@@ -179,7 +183,9 @@ export default function Authenticated({
                     <AdminNavbarLink route={route('admincourses.index')} active={route().current('admincourses.index')}>
                         <FaGraduationCap size={24} /> Courses
                     </AdminNavbarLink>
-
+                    <AdminNavbarLink route={route('adminevents.index')} active={route().current('adminevents.index')}>
+                        <BookUpIcon /> Latest Updates
+                    </AdminNavbarLink>
                 </div>
                 <div className='w-full min-h-screen'>
                     {header && (
@@ -199,7 +205,7 @@ export default function Authenticated({
 
                 </div>
             </section>
-
+            <Toaster />
         </div>
     );
 }

@@ -28,8 +28,8 @@ const CoursesIndex = ({ courses }: PageProps<{ courses: Course[] }>) => {
 
                 <div>
                     {courses.length === 0 ? (
-                        <p>No courses available.</p>
-                    ) : <div className='grid gap-2 mt-4 grid-cols-1 md:grid-cols-4 p-3 sm:grid-cols-2'>
+                        <p className='p-5 text-zinc-600'>No courses available.</p>
+                    ) : <div className='grid gap-2  max-w-7xl w-full mx-auto mt-4 grid-cols-1 md:grid-cols-4 p-3 sm:grid-cols-2'>
                         {
                             courses.map((course) => (
                                 <div key={course.id} className="course-item relative bg-white overflow-hidden rounded-md px-3 py-2 border-[0.01rem] border-zinc-300">

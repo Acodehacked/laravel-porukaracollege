@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import ProgressBar from 'react-customizable-progressbar';
 import { Button } from '../ui/button';
 
-export default function ImageUploader({ setlogoUploaded }: { setlogoUploaded: React.Dispatch<React.SetStateAction<string | null>> }) {
+export default function ImageUploader({ setlogoUploaded,def }: { setlogoUploaded:  React.Dispatch<React.SetStateAction<string | null>>, def?: string | null }) {
     const [logo, setlogo] = useState<string | null>(null)
     const [loaded, setloaded] = useState(false)
     const { data, setData, post, progress, errors, clearErrors } = useForm({
@@ -29,12 +29,12 @@ export default function ImageUploader({ setlogoUploaded }: { setlogoUploaded: Re
     }
 
     // image-upload
-    return <div id="23" className="flex gap-1 flex-col">
+    return <div id="23" className="flex gap-2 p-3 border-[0.01rem] mt-2 border-zinc-200 rounded-md">
         {errors.image && <div className='bg-red-100 rounded-md p-4'>
             <h3 className='font-medium'>{errors.image}</h3>
         </div>}
 
-        <div className='img-box relative h-[100px]'>
+        <div className='img-box relative h-[100px] w-[200px]'>
             <div className={cn('flex justify-center bg-black/50 rounded-xl items-center absolute top-0 left-0 w-full h-full z-[2]', progress ? 'flex' : 'hidden')}>
                 <ProgressBar
                     strokeColor='#0070ff'
@@ -44,7 +44,7 @@ export default function ImageUploader({ setlogoUploaded }: { setlogoUploaded: Re
                     trackStrokeWidth={5}
                     radius={20} />
             </div>
-            <img src={logo ? logo : '/storage/logo.png'} alt="logo" className={cn("w-full h-[100px] object-contain absolute left-0 top-0 z-[1]")} />
+            {def ? <img src={logo ? logo : `/storage/images/small/${def}`} alt="logo" className={cn("w-auto h-[100px] object-contain absolute left-[50%] translate-x-[-50%] top-0 z-[1]")} /> : <img src={logo ? logo : '/storage/logo-black.png'} alt="logo" className={cn("w-auto h-[100px] object-contain absolute left-[50%] translate-x-[-50%] top-0 z-[1]")} />}
         </div>
         <div className="max-w-[800px] w-full flex flex-col gap-2 items-start">
             <Input name='image' onChange={(e) => {
@@ -59,7 +59,7 @@ export default function ImageUploader({ setlogoUploaded }: { setlogoUploaded: Re
             }} accept=".jpg,.png,.webp" id="picture" type="file" />
             <span className='text-[10px]'>Please click upload if the picture is selected</span>
             {/* <Progress value={progress?.percentage} className="w-[60%]" /> */}
-            <Button type='button' disabled={loaded} onClick={submit} variant={'outline'}>{loaded ? 'Uploaded' : 'Upload'}</Button>
+            <Button type='button' disabled={loaded} onClick={submit} variant={'link'}>{loaded ? 'Uploaded' : 'Upload'}</Button>
         </div>
     </div>
 }

@@ -28,7 +28,7 @@ export interface Event {
     description?: string; // Description of the event, optional
     date?: string; // Date in YYYY-MM-DD format, optional
     images?: string[]; // Array of image URLs, optional
-    eventType?: 'Upcoming Event' | 'Announcement' | 'Events' | 'NSS Event'; // Enum for event type
+    eventType?: 'UpcomingEvent' | 'Announcement' | 'Events' | 'NSS Event'; // Enum for event type
     link?: string; // Link, optional
     createdAt?: string; // Created timestamp, optional
     updatedAt?: string; // Updated timestamp, optional

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Common\ImageUploaderController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HompageController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Course;
@@ -46,6 +48,8 @@ Route::get('/Admission',[HompageController::class,'admission']);
 
 
 Route::middleware('auth')->group(function () {
+    Route::post('image-upload', [ImageUploaderController::class, 'store'])->name('image.upload');
+
     Route::get('admin/login',function(){
         return redirect()->to(route('dashboard'));
     });
@@ -58,6 +62,14 @@ Route::middleware('auth')->group(function () {
     Route::put('admin/courses/{id}', [CourseController::class, 'update'])->name('admincourses.update');
     Route::get('admin/courses/{id}', [CourseController::class, 'show'])->name('admincourses.show');
     Route::delete('admin/courses/{id}', [CourseController::class, 'destroy'])->name('admincourses.destroy');
+
+    Route::get('admin/events', [EventController::class, 'index'])->name('adminevents.index');
+    Route::post('admin/events', [EventController::class, 'store'])->name('adminevents.store');
+    Route::get('admin/events/create', [EventController::class, 'create'])->name('adminevents.create');
+    Route::get('admin/events/{id}', [EventController::class, 'show'])->name('adminevents.show');
+    Route::delete('admin/events/{id}', [EventController::class, 'destroy'])->name('adminevents.destroy');
+    Route::put('admin/events/{id}', [EventController::class, 'update'])->name('adminevents.update');
+
 
 
     Route::get('admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');

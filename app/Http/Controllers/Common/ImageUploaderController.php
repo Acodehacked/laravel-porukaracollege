@@ -29,8 +29,7 @@ class ImageUploaderController extends Controller
 
             // Create and save the small version
             $smallImage = InterventionImage::read($file)
-                ->resize(height:300)
-                ->encode(new AutoEncoder('jpg', 40)); // Compress to 40% quality
+            ->scaleDown(width:600)->encode(new AutoEncoder('jpg')); // Compress to 40% quality
 
             $smallPath = 'images/small/' . $originalName;
             Storage::disk('public')->put($smallPath, $smallImage);

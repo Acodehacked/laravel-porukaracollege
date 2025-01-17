@@ -6,17 +6,22 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HompageController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Course;
+use App\Models\Event;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    $events = Event::orderByDesc('date')->groupBy()->limit(100)->get();
+    return Inertia::render('Welcome',[
+        'events'=>$events
+    ]);
 });
 
 Route::get('admin/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'courses' => Inertia::lazy(fn() => Course::all()),
+        'courses' => Course::all(),
+        'events' => Event::all()
     ]);
 })->middleware(['auth'])->name('dashboard');
 // publicShow
@@ -45,6 +50,7 @@ Route::get('/Latest-Events',[HompageController::class,'latestevents']);
 Route::get('/Announcements',[HompageController::class,'annnouncements']);
 Route::get('/AddonCourses',[HompageController::class,'addoncourses']);
 Route::get('/Admission',[HompageController::class,'admission']);
+Route::get('/Facilities/{facility}',[HompageController::class,'facility']);
 
 
 Route::middleware('auth')->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -54,15 +55,29 @@ class HompageController extends Controller
         return Inertia::render('Common/About/Contact');
     }
     public function latestevents(){
-        return Inertia::render('Common/Events/LatestEvents');
+        $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
+        return Inertia::render('Common/Events/LatestEvents',[
+            'latestevents'=>$announcents
+        ]);
     }
-    public function announcements(){
-        return Inertia::render('Common/Events/Announcements');
+    public function annnouncements(){
+        $announcents = Event::where('event_type','Announcement')->orderByDesc('date')->get();
+        return Inertia::render('Common/Events/Announcements',[
+            'announcements'=>$announcents
+        ]);
     }
     public function addoncourses(){
         return Inertia::render('Common/About/AddonCourses');
     }
     public function admission(){
         return Inertia::render('Common/Admission/Admission');
+    }
+    public function facility($facility){
+        $fac = ['library','computerlab','canteen','seminarhall','chapel'];
+        if(in_array($facility,$fac)){
+            return Inertia::render('Common/Administration/Facility', [
+                'facility' => $facility
+            ]);
+        }
     }
 }

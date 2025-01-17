@@ -899,7 +899,7 @@ export const TORCHBEARERS = [
     },
 ]
 export const EventTypes = [
-    'Upcoming Event',
+    'UpcomingEvent',
     'Announcement',
     'Events',
     'NSS Event',

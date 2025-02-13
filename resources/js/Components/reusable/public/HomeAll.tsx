@@ -17,6 +17,7 @@ import Tab from '@/Components/ui/Tab'
 import { Link } from '@inertiajs/react'
 import { Event } from '@/types'
 const HomeAll = ({ events }: { events: Event[] }) => {
+    const UpEvents = events.filter((item)=>item.eventType=='UpcomingEvent')
     const [visible, setvisible] = useState(false)
     return (
         <>
@@ -50,7 +51,7 @@ const HomeAll = ({ events }: { events: Event[] }) => {
                     </Link>
                 </div>
                 <div className='absolute md:top-[50%] md:translate-y-[-50%] lg:left-[1rem] sm:left-[1rem] left-0 right-0 top-[100px] bottom-0 z-[6] md:pt-4'>
-                    <HeroPage />
+                    <HeroPage events={UpEvents} />
                 </div>
                 {/* <div className='absolute z-[5] right-0 bottom-[2rem] left-0 flex justify-center gap-2 text-white '> */}
 

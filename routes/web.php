@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HompageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebcodeController;
 use App\Http\Resources\EventResource;
 use App\Models\Course;
 use App\Models\Event;
@@ -52,6 +53,9 @@ Route::get('/Announcements',[HompageController::class,'annnouncements']);
 Route::get('/AddonCourses',[HompageController::class,'addoncourses']);
 Route::get('/Admission',[HompageController::class,'admission']);
 Route::get('/Facilities/{facility}',[HompageController::class,'facility']);
+
+
+Route::get('/api/webcode/form',[WebcodeController::class,'create']);
 
 
 Route::middleware('auth')->group(function () {

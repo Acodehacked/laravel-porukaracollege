@@ -10,6 +10,7 @@ import { UPCOMING_EVENTS } from "@/constants";
 import { NewspaperIcon } from "lucide-react";
 import Marquee from "react-fast-marquee";
 import { Link } from "@inertiajs/react";
+import { Event } from "@/types";
 const child = {
   visible: {
     opacity: 1,
@@ -30,7 +31,7 @@ const child = {
     },
   },
 };
-const HeroPage = () => {
+const HeroPage = ({ events }: { events: Event[] }) => {
   const [uindex, setuindex] = useState(0);
   useEffect(() => {
     setTimeout(() => {
@@ -71,12 +72,13 @@ const HeroPage = () => {
           <p className='p-0 m-0 mb-4 sm:text-[24px] font-semibold px-2 text-[18px] text-white/60 text-start z-[1]'>Your Pathway to Advanced Learning and Success.</p>
           <div className='px-5 rounded-md py-3 bg-black/60'>
             <h2 className="pb-2 text-yellow-200 [text-shhadow:0px_0px_1px_rgba(0,0,0,0.7)] md:text-[14px] text-[13px]">&gt; &gt; Upcoming Events</h2>
+                {events.length == 0 && <p className="text-[14px] p-2" style={{ lineHeight: '20px' }}>No Upcoming Events Updated</p>}
             <div className='link-footer flex flex-col h-[50px] overflow-hidden ps-2 relative border-t-[0.01rem] border-t-zinc-50/30 text-white gap-1 '>
-              <motion.div transition={{ duration: 0.5 }} style={{ marginTop: `${uindex * -50}px` }} className={`h-[${UPCOMING_EVENTS.length * 50}px] transition-all duration-1000`}>
-                {UPCOMING_EVENTS.map((item, index) => {
+              <motion.div transition={{ duration: 0.5 }} style={{ marginTop: `${uindex * -50}px` }} className={`h-[${events.length * 50}px] transition-all duration-1000`}>
+                {events.length > 0 && events.map((item, index) => {
                   return <div key={index} className="h-[50px] flex gap-2 items-center font-light text-yellow-400">
                     <FaRegNewspaper size={20} />
-                    <p className="text-[16px] " style={{ lineHeight: '20px' }}>{item.text}</p>
+                    <p className="text-[16px] " style={{ lineHeight: '20px' }}>{item.title}</p>
                   </div>
                 })}
               </motion.div>
